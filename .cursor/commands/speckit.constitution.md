@@ -1,84 +1,35 @@
----
-description: Create or update the project constitution from interactive or provided principle inputs, ensuring all dependent templates stay in sync.
-handoffs: 
-  - label: Build Specification
-    agent: speckit.specify
-    prompt: Implement the feature specification based on the updated constitution. I want to build...
----
+# ITP Skill Matrix Module Constitution
 
-## User Input
+## Core Principles
 
-```text
-$ARGUMENTS
-```
+### I. Hierarchical Skill Taxonomy
+All skills must be organised in a strict three-level hierarchy: Category → Sub-Category → Skill (e.g. Development → Frontend → React; Cloud → Azure/AWS → Cloud Services; QA → Automation → Manual Testing). No skill may exist without a Sub-Category parent and a Category grandparent. Taxonomy nodes are admin-managed; employees must not create new nodes directly. Taxonomy changes require admin approval before taking effect.
 
-You **MUST** consider the user input before proceeding (if not empty).
+### II. Calibrated Proficiency Model
+Every skill assignment must carry exactly one of four proficiency levels: 1-Beginner (requires guidance), 2-Intermediate (works independently), 3-Advanced (handles complex tasks, mentors others), 4-Expert (drives innovation and strategy). Final Rating = Self-Assessment (40%) + Manager Validation (40%) + System-Generated Score (20%). All three inputs must be present before a rating is persisted. Peer feedback is collected as supplementary input but does not alter formula weights. Manager overrides are permitted with documented justification; overrides must be stored and auditable.
 
-## Outline
+### III. Employee-Owned Skill Profile (NON-NEGOTIABLE)
+Every employee owns and maintains their personal skill profile. Profiles must support: adding/updating skills at any time, uploading certifications linked to specific skills, viewing proficiency progression over time, and reviewing current levels with recommended next steps. Employees must not be blocked from submitting self-assessments during an open cycle. Certification uploads must store issuer, issue date, expiry date, and linked skill node. Employees must receive notifications when a manager validates or overrides their rating.
 
-You are updating the project constitution at `.specify/memory/constitution.md`. This file is a TEMPLATE containing placeholder tokens in square brackets (e.g. `[PROJECT_NAME]`, `[PRINCIPLE_1_NAME]`). Your job is to (a) collect/derive concrete values, (b) fill the template precisely, and (c) propagate any amendments across dependent artifacts.
+### IV. Role-Based Access and Controls
+Two distinct control planes must be enforced. Manager controls: approve and validate employee skill submissions, view full team skill matrix, identify team capability gaps. Admin controls: manage skill taxonomy, define skill frameworks and proficiency standards, configure assessment workflows. Managers must only access profiles of their direct or delegated reports; cross-team visibility requires explicit admin grant. Admins must not submit or alter individual proficiency scores directly. All access-control changes must be logged with actor, timestamp, and reason.
 
-**Note**: If `.specify/memory/constitution.md` does not exist yet, it should have been initialized from `.specify/templates/constitution-template.md` during project setup. If it's missing, copy the template first.
+### V. Reporting and Actionable Insights
+Four standard report types are mandatory: Skill Gap Analysis (missing skills vs. org/project requirements), Team Capability Report (team strengths and development areas), Project Skill Matching (ranked candidates matched to project skill needs), and Organisation Skill Heatmap (visual skill distribution across the org). All reports must be filterable by department, team, skill category, and date range. Reports must not expose personal data beyond name, role, and skill profile. Heatmaps must be exportable to CSV and PDF.
 
-Follow this execution flow:
+### VI. ITP Platform Integration
+The module must integrate natively with four ITP platform touchpoints: Employee Profiles (read/write — sync base data, push ratings), Project Allocation (read — match skills to project requirements), Performance Reviews (read/write — feed ratings into review cycles), Learning & Development (read/write — consume completions, push skill gap signals). All integrations must use internal ITP API contracts; no direct cross-database joins permitted. Breaking contract changes require a minimum two-sprint deprecation window. The module must remain operable in a degraded-integration state; loss of one integration must not take down core workflows.
 
-1. Load the existing constitution at `.specify/memory/constitution.md`.
-   - Identify every placeholder token of the form `[ALL_CAPS_IDENTIFIER]`.
-   **IMPORTANT**: The user might require less or more principles than the ones used in the template. If a number is specified, respect that - follow the general template. You will update the doc accordingly.
+## Integration Constraints
 
-2. Collect/derive values for placeholders:
-   - If user input (conversation) supplies a value, use it.
-   - Otherwise infer from existing repo context (README, docs, prior constitution versions if embedded).
-   - For governance dates: `RATIFICATION_DATE` is the original adoption date (if unknown ask or mark TODO), `LAST_AMENDED_DATE` is today if changes are made, otherwise keep previous.
-   - `CONSTITUTION_VERSION` must increment according to semantic versioning rules:
-     - MAJOR: Backward incompatible governance/principle removals or redefinitions.
-     - MINOR: New principle/section added or materially expanded guidance.
-     - PATCH: Clarifications, wording, typo fixes, non-semantic refinements.
-   - If version bump type ambiguous, propose reasoning before finalizing.
+The Skill Matrix Module is a first-class citizen of the ITP Platform ecosystem, not a standalone tool. All data flows must go through versioned internal API contracts. The module must be independently deployable without requiring coordinated releases across all integrated modules. Skill taxonomy and proficiency standards defined here are the single source of truth; no other ITP module may define conflicting skill classification schemes.
 
-3. Draft the updated constitution content:
-   - Replace every placeholder with concrete text (no bracketed tokens left except intentionally retained template slots that the project has chosen not to define yet—explicitly justify any left).
-   - Preserve heading hierarchy and comments can be removed once replaced unless they still add clarifying guidance.
-   - Ensure each Principle section: succinct name line, paragraph (or bullet list) capturing non‑negotiable rules, explicit rationale if not obvious.
-   - Ensure Governance section lists amendment procedure, versioning policy, and compliance review expectations.
+## Workforce Impact Standards
 
-4. Consistency propagation checklist (convert prior checklist into active validations):
-   - Read `.specify/templates/plan-template.md` and ensure any "Constitution Check" or rules align with updated principles.
-   - Read `.specify/templates/spec-template.md` for scope/requirements alignment—update if constitution adds/removes mandatory sections or constraints.
-   - Read `.specify/templates/tasks-template.md` and ensure task categorization reflects new or removed principle-driven task types (e.g., observability, versioning, testing discipline).
-   - Read each command file in `.specify/templates/commands/*.md` (including this one) to verify no outdated references (agent-specific names like CLAUDE only) remain when generic guidance is required.
-   - Read any runtime guidance docs (e.g., `README.md`, `docs/quickstart.md`, or agent-specific guidance files if present). Update references to principles changed.
+Target outcomes that all delivery decisions must support: ≥ 35% improvement in project staffing speed, ≥ 60% increase in workforce visibility, ≥ 45% improvement in career development tracking, ≥ 80% skill gap identification accuracy. Features or scope changes that demonstrably regress these outcomes require Product Manager sign-off before proceeding. v1 scope excludes: payroll/compensation adjustments based on skill ratings, external talent marketplace integrations, and AI-generated learning content.
 
-5. Produce a Sync Impact Report (prepend as an HTML comment at top of the constitution file after update):
-   - Version change: old → new
-   - List of modified principles (old title → new title if renamed)
-   - Added sections
-   - Removed sections
-   - Templates requiring updates (✅ updated / ⚠ pending) with file paths
-   - Follow-up TODOs if any placeholders intentionally deferred.
+## Governance
 
-6. Validation before final output:
-   - No remaining unexplained bracket tokens.
-   - Version line matches report.
-   - Dates ISO format YYYY-MM-DD.
-   - Principles are declarative, testable, and free of vague language ("should" → replace with MUST/SHOULD rationale where appropriate).
+This constitution supersedes all other project practices and documentation. Amendments affecting the Proficiency Model (Principle II) or Skill Taxonomy (Principle I) require sign-off from both the Product Manager and Engineering Lead. All other amendments require Product Manager approval only. Approved amendments must be applied to this constitution and all dependent templates within one sprint. All PRs and feature reviews must verify compliance with these principles. Complexity must be justified against the workforce impact standards above. Use `.specify/memory/constitution.md` as the authoritative runtime reference during development.
 
-7. Write the completed constitution back to `.specify/memory/constitution.md` (overwrite).
-
-8. Output a final summary to the user with:
-   - New version and bump rationale.
-   - Any files flagged for manual follow-up.
-   - Suggested commit message (e.g., `docs: amend constitution to vX.Y.Z (principle additions + governance update)`).
-
-Formatting & Style Requirements:
-
-- Use Markdown headings exactly as in the template (do not demote/promote levels).
-- Wrap long rationale lines to keep readability (<100 chars ideally) but do not hard enforce with awkward breaks.
-- Keep a single blank line between sections.
-- Avoid trailing whitespace.
-
-If the user supplies partial updates (e.g., only one principle revision), still perform validation and version decision steps.
-
-If critical info missing (e.g., ratification date truly unknown), insert `TODO(<FIELD_NAME>): explanation` and include in the Sync Impact Report under deferred items.
-
-Do not create a new template; always operate on the existing `.specify/memory/constitution.md` file.
+**Version**: 1.0.0 | **Ratified**: TODO(RATIFICATION_DATE) | **Last Amended**: 2026-03-12

@@ -51,7 +51,11 @@ Given that feature description, do this:
 
 3. Load `.specify/templates/spec-template.md` to understand required sections.
 
-4. Follow this execution flow:
+4. **Load project constitution and reference spec (if present)**:
+   - If `.specify/memory/constitution.md` exists, load it. The constitution defines project principles (e.g. for ITP Skill Matrix: **P1** Hierarchical Skill Taxonomy, **P2** Calibrated Proficiency Model, **P3** Employee-Owned Skill Profile, **P4** Role-Based Access, **P5** Reporting and Actionable Insights, **P6** ITP Platform Integration). When generating the spec, ensure requirements and user stories align with these principles where the feature touches them. Do not copy constitution text into the spec; translate principles into testable requirements and scenarios.
+   - Optionally reference existing `specs/001-skill-matrix/spec.md` and `specs/001-skill-matrix/plan.md` for structural patterns: User Stories with **Why this priority**, **Independent Test**, **Acceptance Scenarios**; **Dependencies & Assumptions**; **Key Entities**; **Success Criteria** (SC-001 style). Downstream `/speckit.plan` runs a Constitution Check; the spec must be compatible with constitution principles.
+
+5. Follow this execution flow:
 
     1. Parse user description from Input
        If empty: ERROR "No feature description provided"
@@ -75,11 +79,12 @@ Given that feature description, do this:
        Include both quantitative metrics (time, performance, volume) and qualitative measures (user satisfaction, task completion)
        Each criterion must be verifiable without implementation details
     7. Identify Key Entities (if data involved)
-    8. Return: SUCCESS (spec ready for planning)
+    8. If constitution was loaded: ensure no requirement or scenario contradicts its principles; add or adjust requirements so the spec is constitution-aligned where relevant
+    9. Return: SUCCESS (spec ready for planning)
 
-5. Write the specification to SPEC_FILE using the template structure, replacing placeholders with concrete details derived from the feature description (arguments) while preserving section order and headings.
+6. Write the specification to SPEC_FILE using the template structure, replacing placeholders with concrete details derived from the feature description (arguments) and constitution (if loaded). Preserve section order and headings. Include **Dependencies & Assumptions** when the feature has integration points, identity, or platform assumptions (see existing `specs/001-skill-matrix/spec.md`).
 
-6. **Specification Quality Validation**: After writing the initial spec, validate it against quality criteria:
+7. **Specification Quality Validation**: After writing the initial spec, validate it against quality criteria:
 
    a. **Create Spec Quality Checklist**: Generate a checklist file at `FEATURE_DIR/checklists/requirements.md` using the checklist template structure with these validation items:
 
@@ -107,6 +112,7 @@ Given that feature description, do this:
       - [ ] Edge cases are identified
       - [ ] Scope is clearly bounded
       - [ ] Dependencies and assumptions identified
+      - [ ] If `.specify/memory/constitution.md` exists: spec aligns with applicable constitution principles (no conflicting requirements)
       
       ## Feature Readiness
       
@@ -171,7 +177,7 @@ Given that feature description, do this:
 
    d. **Update Checklist**: After each validation iteration, update the checklist file with current pass/fail status
 
-7. Report completion with branch name, spec file path, checklist results, and readiness for the next phase (`/speckit.clarify` or `/speckit.plan`).
+8. Report completion with branch name, spec file path, checklist results, constitution alignment (if applied), and readiness for the next phase (`/speckit.clarify` or `/speckit.plan`).
 
 **NOTE:** The script creates and checks out the new branch and initializes the spec file before writing.
 

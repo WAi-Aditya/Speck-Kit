@@ -100,6 +100,14 @@
 - **[Entity 1]**: [What it represents, key attributes without implementation]
 - **[Entity 2]**: [What it represents, relationships to other entities]
 
+## Dependencies & Assumptions
+
+<!-- Include when the feature depends on identity, platform, or integration assumptions. -->
+
+- [Assumption or dependency, e.g. single source of truth for identity]
+- [Platform or role-based access assumption]
+- [Integration or data consistency assumption]
+
 ## Success Criteria *(mandatory)*
 
 <!--

@@ -1,5 +1,7 @@
 # Tasks: Skill Matrix Module Integration in ITP
 
+**GitHub Issues**: [Speck-Kit Issues](https://github.com/WAi-Aditya/Speck-Kit/issues) — To create issues from these tasks, run `specs/001-skill-matrix/create-github-issues.ps1` (requires [GitHub CLI](https://cli.github.com/) and `gh auth login`). Issue data is in `specs/001-skill-matrix/github-issues-from-tasks.json`.
+
 **Input**: Design documents from /specs/satish-qa-skill-matrix/
 **Prerequisites**: plan.md
 
