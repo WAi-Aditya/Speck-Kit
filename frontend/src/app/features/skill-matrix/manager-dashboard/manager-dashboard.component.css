@@ -1,0 +1,17 @@
+.manager-dashboard {
+  padding: 1rem;
+}
+.manager-dashboard h2 {
+  margin-bottom: 1rem;
+}
+.field {
+  margin-bottom: 1rem;
+}
+.field label {
+  display: block;
+  margin-bottom: 0.25rem;
+}
+.error {
+  color: var(--p-danger-500, #ef4444);
+  margin-top: 0.5rem;
+}

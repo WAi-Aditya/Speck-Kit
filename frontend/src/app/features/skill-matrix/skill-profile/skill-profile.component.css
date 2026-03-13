@@ -1,0 +1,10 @@
+.skill-profile {
+  padding: 1rem;
+}
+.skill-profile h2 {
+  margin-bottom: 1rem;
+}
+.error {
+  color: var(--p-danger-500, #ef4444);
+  margin-top: 0.5rem;
+}

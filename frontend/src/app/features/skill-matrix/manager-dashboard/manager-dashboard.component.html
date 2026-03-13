@@ -1,0 +1,69 @@
+<div class="manager-dashboard">
+  <h2>Pending Approvals</h2>
+  <p *ngIf="loading">Loading...</p>
+  <p-table
+    *ngIf="!loading"
+    [value]="items"
+    [tableStyle]="{ 'min-width': '50rem' }"
+    styleClass="p-datatable-striped"
+  >
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Employee</th>
+        <th>Skill</th>
+        <th>Category</th>
+        <th>Self level</th>
+        <th>Submitted</th>
+        <th></th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-row>
+      <tr>
+        <td>{{ row.employeeName || row.employeeId }}</td>
+        <td>{{ row.skillName }}</td>
+        <td>{{ row.categoryName }}</td>
+        <td>{{ row.selfAssessedLevel ?? '-' }}</td>
+        <td>{{ row.submittedAt | date : 'short' }}</td>
+        <td>
+          <button pButton label="Approve" class="p-button-success p-button-sm" (click)="openDialog(row, 'approve')"></button>
+          <button pButton label="Reject" class="p-button-danger p-button-sm" (click)="openDialog(row, 'reject')"></button>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td colspan="6">No pending approvals.</td>
+      </tr>
+    </ng-template>
+  </p-table>
+
+  <p-dialog
+    [(visible)]="dialogVisible"
+    [header]="action === 'approve' ? 'Approve' : 'Reject'"
+    [modal]="true"
+    [style]="{ width: '400px' }"
+    (onHide)="selectedRow = null"
+  >
+    <ng-container *ngIf="selectedRow">
+      <p><strong>{{ selectedRow.skillName }}</strong> — {{ selectedRow.employeeName || selectedRow.employeeId }}</p>
+      <div *ngIf="action === 'approve'" class="field">
+        <label>Manager level</label>
+        <p-dropdown
+          [options]="levelOptions"
+          [(ngModel)]="managerLevel"
+          optionLabel="label"
+          optionValue="value"
+        ></p-dropdown>
+      </div>
+      <div class="field">
+        <label>Notes</label>
+        <textarea pInputTextarea [(ngModel)]="managerNotes" rows="3"></textarea>
+      </div>
+      <p *ngIf="submitError" class="error">{{ submitError }}</p>
+    </ng-container>
+    <ng-template pTemplate="footer">
+      <button pButton label="Cancel" (click)="dialogVisible = false"></button>
+      <button pButton [label]="action === 'approve' ? 'Approve' : 'Reject'" (click)="submit()"></button>
+    </ng-template>
+  </p-dialog>
+</div>

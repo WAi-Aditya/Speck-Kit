@@ -1,0 +1,59 @@
+<div class="admin-taxonomy">
+  <h2>Skill Taxonomy (HR Admin)</h2>
+  <p *ngIf="loading">Loading...</p>
+  <div *ngIf="!loading">
+    <h3>Categories</h3>
+    <p-table [value]="categories" [tableStyle]="{ 'min-width': '40rem' }" styleClass="p-datatable-striped">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Active</th>
+          <th>Sort</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-cat>
+        <tr>
+          <td>{{ cat.name }}</td>
+          <td>{{ cat.description || '-' }}</td>
+          <td>{{ cat.isActive ? 'Yes' : 'No' }}</td>
+          <td>{{ cat.sortOrder }}</td>
+        </tr>
+      </ng-template>
+    </p-table>
+    <h3>Sub-categories</h3>
+    <p-table [value]="subCategories" [tableStyle]="{ 'min-width': '40rem' }" styleClass="p-datatable-striped">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Name</th>
+          <th>Category</th>
+          <th>Active</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-sub>
+        <tr>
+          <td>{{ sub.name }}</td>
+          <td>{{ getCategoryName(sub.skillCategoryId) }}</td>
+          <td>{{ sub.isActive ? 'Yes' : 'No' }}</td>
+        </tr>
+      </ng-template>
+    </p-table>
+    <h3>Skills</h3>
+    <p-table [value]="skills" [tableStyle]="{ 'min-width': '40rem' }" styleClass="p-datatable-striped">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Name</th>
+          <th>Sub-category</th>
+          <th>Active</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-skill>
+        <tr>
+          <td>{{ skill.name }}</td>
+          <td>{{ getSubCategoryName(skill.skillSubCategoryId) }}</td>
+          <td>{{ skill.isActive ? 'Yes' : 'No' }}</td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+</div>

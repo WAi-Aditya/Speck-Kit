@@ -1,0 +1,64 @@
+<div class="skill-profile">
+  <h2>My Skill Profile</h2>
+  <p *ngIf="loading">Loading...</p>
+  <p-table
+    *ngIf="!loading && profile"
+    [value]="profile.skills"
+    [tableStyle]="{ 'min-width': '50rem' }"
+    styleClass="p-datatable-striped"
+  >
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Skill</th>
+        <th>Category</th>
+        <th>Sub-category</th>
+        <th>Self level</th>
+        <th>Manager level</th>
+        <th>Status</th>
+        <th></th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-skill>
+      <tr>
+        <td>{{ skill.skillName }}</td>
+        <td>{{ skill.categoryName }}</td>
+        <td>{{ skill.subCategoryName }}</td>
+        <td>
+          <ng-container *ngIf="editingId !== skill.employeeSkillId">
+            {{ skill.selfAssessedLevel ?? '-' }}
+          </ng-container>
+          <p-dropdown
+            *ngIf="editingId === skill.employeeSkillId"
+            [options]="levelOptions"
+            [(ngModel)]="skill.selfAssessedLevel"
+            (onChange)="saveLevel(skill, $event.value)"
+            optionLabel="label"
+            optionValue="value"
+          ></p-dropdown>
+        </td>
+        <td>{{ skill.managerValidatedLevel ?? '-' }}</td>
+        <td>{{ getStatusLabel(skill.validationStatus) }}</td>
+        <td>
+          <button
+            *ngIf="editingId !== skill.employeeSkillId"
+            pButton
+            label="Edit"
+            (click)="startEdit(skill)"
+          ></button>
+          <button
+            *ngIf="editingId === skill.employeeSkillId"
+            pButton
+            label="Cancel"
+            (click)="cancelEdit()"
+          ></button>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td colspan="7">No skills on your profile yet. Add skills from the taxonomy (when available).</td>
+      </tr>
+    </ng-template>
+  </p-table>
+  <p *ngIf="saveError" class="error">{{ saveError }}</p>
+</div>

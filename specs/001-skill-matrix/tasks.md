@@ -49,27 +49,27 @@
 
 ### Tests for User Story 1
 
-- [ ] T017 [P] [US1] Add taxonomy CRUD contract tests in backend/tests/Contract/SkillMatrix/TaxonomyContractsTests.cs
-- [ ] T018 [P] [US1] Add employee profile API integration tests in backend/tests/Integration/SkillMatrix/EmployeeProfileFlowTests.cs
-- [ ] T019 [P] [US1] Add manager approval API integration tests in backend/tests/Integration/SkillMatrix/ManagerApprovalFlowTests.cs
-- [ ] T020 [P] [US1] Add frontend component tests for skill profile page in frontend/src/app/features/skill-matrix/skill-profile/skill-profile.component.spec.ts
-- [ ] T021 [P] [US1] Add frontend component tests for taxonomy admin page in frontend/src/app/features/skill-matrix/admin-taxonomy/admin-taxonomy.component.spec.ts
-- [ ] T022 [P] [US1] Add regression test suite for MVP flow in tests/regression/skill-matrix/mvp-regression.md
+- [x] T017 [P] [US1] Add taxonomy CRUD contract tests in backend/tests/Contract/SkillMatrix/TaxonomyContractsTests.cs
+- [x] T018 [P] [US1] Add employee profile API integration tests in backend/tests/Integration/SkillMatrix/EmployeeProfileFlowTests.cs
+- [x] T019 [P] [US1] Add manager approval API integration tests in backend/tests/Integration/SkillMatrix/ManagerApprovalFlowTests.cs
+- [x] T020 [P] [US1] Add frontend component tests for skill profile page in frontend/src/app/features/skill-matrix/skill-profile/skill-profile.component.spec.ts
+- [x] T021 [P] [US1] Add frontend component tests for taxonomy admin page in frontend/src/app/features/skill-matrix/admin-taxonomy/admin-taxonomy.component.spec.ts
+- [x] T022 [P] [US1] Add regression test suite for MVP flow in tests/regression/skill-matrix/mvp-regression.md
 
 ### Implementation for User Story 1
 
-- [ ] T023 [US1] Implement taxonomy application services in backend/src/Modules/SkillMatrix/Application/Taxonomy/TaxonomyService.cs
-- [ ] T024 [US1] Implement taxonomy CRUD API controller (Admin only) in backend/src/Modules/SkillMatrix/Presentation/Controllers/SkillTaxonomyController.cs
-- [ ] T025 [US1] Implement employee skill profile service in backend/src/Modules/SkillMatrix/Application/Profile/EmployeeSkillProfileService.cs
-- [ ] T026 [US1] Implement employee skill profile API endpoints in backend/src/Modules/SkillMatrix/Presentation/Controllers/EmployeeSkillProfileController.cs
-- [ ] T027 [US1] Implement manager approval service and workflow rules in backend/src/Modules/SkillMatrix/Application/Approval/ManagerApprovalService.cs
-- [ ] T028 [US1] Implement manager approval PATCH endpoint in backend/src/Modules/SkillMatrix/Presentation/Controllers/ManagerApprovalController.cs
-- [ ] T029 [US1] Create Angular lazy-loaded feature routing for MVP pages in frontend/src/app/features/skill-matrix/skill-matrix.routes.ts
-- [ ] T030 [US1] Implement Angular SkillService API client in frontend/src/app/features/skill-matrix/data-access/skill.service.ts
-- [ ] T031 [US1] Build employee skill profile page with p-table and edit forms in frontend/src/app/features/skill-matrix/skill-profile/
-- [ ] T032 [US1] Build manager dashboard approval page with p-table and p-dialog in frontend/src/app/features/skill-matrix/manager-dashboard/
-- [ ] T033 [US1] Build HR admin taxonomy manager page with PrimeNG CRUD forms in frontend/src/app/features/skill-matrix/admin-taxonomy/
-- [ ] T034 [US1] Wire role guards and conditional UI actions for MVP screens in frontend/src/app/features/skill-matrix/
+- [x] T023 [US1] Implement taxonomy application services in backend/src/Modules/SkillMatrix/Application/Taxonomy/TaxonomyService.cs
+- [x] T024 [US1] Implement taxonomy CRUD API controller (Admin only) in backend/src/Modules/SkillMatrix/Presentation/Controllers/SkillTaxonomyController.cs
+- [x] T025 [US1] Implement employee skill profile service in backend/src/Modules/SkillMatrix/Application/Profile/EmployeeSkillProfileService.cs
+- [x] T026 [US1] Implement employee skill profile API endpoints in backend/src/Modules/SkillMatrix/Presentation/Controllers/EmployeeSkillProfileController.cs
+- [x] T027 [US1] Implement manager approval service and workflow rules in backend/src/Modules/SkillMatrix/Application/Approval/ManagerApprovalService.cs
+- [x] T028 [US1] Implement manager approval PATCH endpoint in backend/src/Modules/SkillMatrix/Presentation/Controllers/ManagerApprovalController.cs
+- [x] T029 [US1] Create Angular lazy-loaded feature routing for MVP pages in frontend/src/app/features/skill-matrix/skill-matrix.routes.ts
+- [x] T030 [US1] Implement Angular SkillService API client in frontend/src/app/features/skill-matrix/data-access/skill.service.ts
+- [x] T031 [US1] Build employee skill profile page with p-table and edit forms in frontend/src/app/features/skill-matrix/skill-profile/
+- [x] T032 [US1] Build manager dashboard approval page with p-table and p-dialog in frontend/src/app/features/skill-matrix/manager-dashboard/
+- [x] T033 [US1] Build HR admin taxonomy manager page with PrimeNG CRUD forms in frontend/src/app/features/skill-matrix/admin-taxonomy/
+- [x] T034 [US1] Wire role guards and conditional UI actions for MVP screens in frontend/src/app/features/skill-matrix/
 
 **Checkpoint**: User Story 1 is independently functional and demo-ready.
 
@@ -83,12 +83,12 @@
 
 ### Tests for User Story 2
 
-- [ ] T035 [P] [US2] Add certification upload contract tests (multipart) in backend/tests/Contract/SkillMatrix/CertificationUploadContractsTests.cs
-- [ ] T036 [P] [US2] Add assessment assign/submit/evaluate integration tests in backend/tests/Integration/SkillMatrix/AssessmentWorkflowTests.cs
-- [ ] T037 [P] [US2] Add notification scheduler integration tests in backend/tests/Integration/SkillMatrix/NotificationSchedulerTests.cs
-- [ ] T038 [P] [US2] Add frontend tests for certification upload component in frontend/src/app/features/skill-matrix/skill-profile/certification-upload.component.spec.ts
-- [ ] T039 [P] [US2] Add frontend tests for assessment workflow screens in frontend/src/app/features/skill-matrix/assessments/assessments.component.spec.ts
-- [ ] T040 [P] [US2] Add regression tests for certification and assessment lifecycle in tests/regression/skill-matrix/phase2-regression.md
+- [x] T035 [P] [US2] Add certification upload contract tests (multipart) in backend/tests/Contract/SkillMatrix/CertificationUploadContractsTests.cs
+- [x] T036 [P] [US2] Add assessment assign/submit/evaluate integration tests in backend/tests/Integration/SkillMatrix/AssessmentWorkflowTests.cs
+- [x] T037 [P] [US2] Add notification scheduler integration tests in backend/tests/Integration/SkillMatrix/NotificationSchedulerTests.cs
+- [x] T038 [P] [US2] Add frontend tests for certification upload component in frontend/src/app/features/skill-matrix/skill-profile/certification-upload.component.spec.ts
+- [x] T039 [P] [US2] Add frontend tests for assessment workflow screens in frontend/src/app/features/skill-matrix/assessments/assessments.component.spec.ts
+- [x] T040 [P] [US2] Add regression tests for certification and assessment lifecycle in tests/regression/skill-matrix/phase2-regression.md
 
 ### Implementation for User Story 2
 

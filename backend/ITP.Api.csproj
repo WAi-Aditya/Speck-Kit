@@ -7,6 +7,12 @@
     <RootNamespace>ITP.Api</RootNamespace>
     <AssemblyName>ITP.Api</AssemblyName>
   </PropertyGroup>
+  <ItemGroup>
+    <InternalsVisibleTo Include="ITP.Api.Tests" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="tests\**\*" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Azure.Storage.Blobs" Version="12.19.1" />
