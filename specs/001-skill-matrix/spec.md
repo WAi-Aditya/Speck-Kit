@@ -75,11 +75,28 @@ Managers and stakeholders can view reports that surface skill gaps, distribution
 
 ### Key Entities *(include if feature involves data)*
 
-- **Skill**: Represents a competency with attributes: name, description, category, subcategory, and status (active/inactive).
-- **SkillEntry**: Represents an employee's instance of a skill, including proficiency level, assessment history, and approval status.
-- **Assessment**: Represents a rating event (self, manager, peer, system) with type, score, date, and optional comments.
-- **Certification**: Represents a credential linked to a skill with attributes: title, issuer, issue date, expiry date, and document reference.
-- **Report**: Represents generated insights (gap analysis, distribution, matching) with filters and aggregations.
+- **Skill**: Competency with name (required, max 200), description (optional), category, subcategory, status (active/inactive). Must have SubCategory parent and Category grandparent. See data-model.md for full fields.
+- **SkillEntry (EmployeeSkill)**: Employee's instance of a skill: proficiency level (1–4), assessment history, approval status (Pending/Approved/Rejected). Final rating computed when self, manager, and system scores present; manager may override with justification stored.
+- **Assessment**: Rating event with type (self, manager, peer, system), score, date, optional comments. Status: Assigned, Submitted, Evaluated.
+- **Certification**: Credential linked to one skill: title, issuer, issue date (required), expiry date (optional; if set must be ≥ issue date), document reference. See data-model.md.
+- **Report**: Generated insights (gap analysis, distribution, matching) with filters (department, team, category, date range) and aggregations.
+
+### Validation & Business Rules
+
+- **Proficiency levels**: Exactly four levels — Beginner (1), Intermediate (2), Advanced (3), Expert (4). Any API accepting a level MUST reject values outside 1–4 with a clear validation error.
+- **Taxonomy hierarchy**: No skill without a SubCategory; no SubCategory without a Category. Create/update MUST validate parent exists and is active. Deactivate (soft delete) instead of hard delete when entity is in use.
+- **Certification dates**: IssueDate required. If ExpiryDate is provided, ExpiryDate MUST be ≥ IssueDate; otherwise return validation error.
+- **Approval workflow**: EmployeeSkill can be Pending, Approved, or Rejected. Only managers (for their reports) can set Approved/Rejected; manager override of final rating MUST store justification (e.g. in ManagerNotes).
+- **Final rating (constitution P2)**: Persist FinalRating only when SelfAssessedLevel, ManagerValidatedLevel, and SystemGeneratedScore are all present. Formula: 0.4×Self + 0.4×Manager + 0.2×System. Peer feedback is informational only, not in formula.
+- **Ownership**: Employee can create/update only their own profile and certifications. Manager can view team and approve/reject only for direct or delegated reports. HR Admin can manage taxonomy only, not individual proficiency scores.
+
+### Error-Handling Expectations
+
+- **Validation failures** (e.g. invalid level, duplicate skill, expiry &lt; issue date): Return 400 with a structured body (e.g. RFC 7807) listing field errors so the UI can show messages next to fields.
+- **Not found** (e.g. skill id, employee id): Return 404; UI shows a clear "not found" message, no crash.
+- **Forbidden** (valid user, insufficient role or scope): Return 403; UI hides or disables the action and does not expose other users' data.
+- **Conflict** (e.g. duplicate skill on profile, delete category in use): Return 409 with a clear message; UI shows retry or change input.
+- **Server errors**: Return 500; UI shows a generic error and optional retry; do not leak stack traces to client.
 
 ## Dependencies & Assumptions
 

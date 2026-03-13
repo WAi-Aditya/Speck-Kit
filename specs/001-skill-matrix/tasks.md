@@ -2,7 +2,7 @@
 
 **GitHub Issues**: [Speck-Kit Issues](https://github.com/WAi-Aditya/Speck-Kit/issues) — To create issues from these tasks, run `specs/001-skill-matrix/create-github-issues.ps1` (requires [GitHub CLI](https://cli.github.com/) and `gh auth login`). Issue data is in `specs/001-skill-matrix/github-issues-from-tasks.json`.
 
-**Input**: Design documents from /specs/satish-qa-skill-matrix/
+**Input**: Design documents from /specs/001-skill-matrix/ (spec.md, plan.md, data-model.md, contracts/)
 **Prerequisites**: plan.md
 
 **Tests**: Included because QA non-negotiables require positive, negative, functional, non-functional, edge-case, integration, and regression coverage before story closure.
@@ -146,7 +146,7 @@
 - [ ] T067 Add centralized error mapping and validation problem details in backend/src/Modules/SkillMatrix/Presentation/Filters/SkillMatrixExceptionFilter.cs
 - [ ] T068 [P] Add backend performance test scenarios for skill APIs against SLA in tests/performance/skill-matrix/backend-sla.k6.js
 - [ ] T069 [P] Add frontend page-load benchmark checks for key screens in tests/performance/skill-matrix/frontend-sla.md
-- [ ] T070 Run end-to-end QA checklist and release sign-off evidence in specs/satish-qa-skill-matrix/quickstart.md
+- [ ] T070 Run end-to-end QA checklist and release sign-off evidence in specs/001-skill-matrix/quickstart.md
 
 ---
 
@@ -218,3 +218,4 @@
 - Every task includes explicit file paths for execution.
 - All user-story tasks are tagged with [US1], [US2], or [US3].
 - QA non-negotiables are represented with contract, integration, regression, and SLA validation tasks.
+- **Code generation**: Use **data-model.md** for entity fields, types, and validation rules; use **contracts/** for API request/response shapes and status codes. Implement validation and error handling per **spec.md** (Validation & Business Rules, Error-Handling Expectations) to reduce bugs. See **CODE_GENERATION_READINESS.md** for full guidance.

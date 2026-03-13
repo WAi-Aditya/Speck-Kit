@@ -7,7 +7,7 @@
 
 ## Summary
 
-[Extract from feature spec: primary requirement + technical approach from research]
+Skill Matrix module captures, maintains, and analyzes employee skill data in the ITP platform. Backend: ASP.NET Core 8 + EF Core 8 + SQL Server; frontend: Angular 17 + PrimeNG 17. Delivered in three phases: MVP (taxonomy, self-assessment, manager approval), then certifications/assessments/notifications, then reporting, heatmap, project matching, and ITP integrations. All design aligns with constitution (P1–P6).
 
 ## Technical Context
 
@@ -27,7 +27,14 @@
 
 *GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
 
-[Gates determined based on constitution file]
+| Principle | Gate | Status |
+|-----------|------|--------|
+| P1 Hierarchical Taxonomy | Category → SubCategory → Skill; no skill without parent; admin-only taxonomy changes | Pass — design uses SkillCategory, SkillSubCategory, Skill; CRUD restricted to HR Admin |
+| P2 Calibrated Proficiency | Four levels; formula 0.4×Self + 0.4×Manager + 0.2×System; manager override with justification stored | Pass — data-model and approval workflow implement formula and audit |
+| P3 Employee-Owned Profile | Employees add/update skills; certifications with metadata; notify on manager validation | Pass — profile APIs and notification service |
+| P4 Role-Based Access | Manager: approve, view team; Admin: taxonomy only; no admin edit of scores | Pass — policies in BE-11, FE-09 |
+| P5 Reporting | Gap, team, heatmap, project matching; filterable; no salary; export CSV/PDF | Pass — reporting tasks and constraints |
+| P6 ITP Integration | Employee Profile, Project Allocation, Performance, L&D; internal APIs; degraded mode safe | Pass — integration adapters and rules |
 
 ## Project Structure
 
@@ -44,51 +51,64 @@ specs/[###-feature]/
 ```
 
 ### Source Code (repository root)
-<!--
-  ACTION REQUIRED: Replace the placeholder tree below with the concrete layout
-  for this feature. Delete unused options and expand the chosen structure with
-  real paths (e.g., apps/admin, packages/something). The delivered plan must
-  not include Option labels.
--->
 
 ```text
-# [REMOVE IF UNUSED] Option 1: Single project (DEFAULT)
-src/
-├── models/
-├── services/
-├── cli/
-└── lib/
-
-tests/
-├── contract/
-├── integration/
-└── unit/
-
-# [REMOVE IF UNUSED] Option 2: Web application (when "frontend" + "backend" detected)
 backend/
 ├── src/
-│   ├── models/
-│   ├── services/
-│   └── api/
+│   ├── Modules/
+│   │   └── SkillMatrix/
+│   │       ├── Domain/
+│   │       │   ├── Entities/
+│   │       │   ├── Enums/
+│   │       │   └── Common/
+│   │       ├── Application/
+│   │       │   ├── Taxonomy/
+│   │       │   ├── Profile/
+│   │       │   ├── Approval/
+│   │       │   ├── Certification/
+│   │       │   ├── Assessment/
+│   │       │   ├── Notifications/
+│   │       │   └── Reporting/
+│   │       ├── Infrastructure/
+│   │       │   ├── Persistence/
+│   │       │   ├── Storage/
+│   │       │   └── Jobs/
+│   │       ├── Presentation/
+│   │       │   ├── Controllers/
+│   │       │   ├── Swagger/
+│   │       │   ├── Auth/
+│   │       │   └── Filters/
+│   │       └── Integration/
+│   └── Infrastructure/
+│       ├── Persistence/
+│       │   └── Migrations/
+│       └── Configuration/
 └── tests/
+    ├── Contract/
+    │   └── SkillMatrix/
+    ├── Integration/
+    │   └── SkillMatrix/
+    └── Unit/
 
 frontend/
 ├── src/
-│   ├── components/
-│   ├── pages/
-│   └── services/
+│   └── app/
+│       ├── core/
+│       │   └── auth/
+│       └── features/
+│           └── skill-matrix/
+│               ├── skill-profile/
+│               ├── manager-dashboard/
+│               ├── admin-taxonomy/
+│               ├── assessments/
+│               ├── notifications/
+│               ├── reports/
+│               ├── project-matching/
+│               └── data-access/
 └── tests/
-
-# [REMOVE IF UNUSED] Option 3: Mobile + API (when "iOS/Android" detected)
-api/
-└── [same as backend above]
-
-ios/ or android/
-└── [platform-specific structure: feature modules, UI flows, platform tests]
 ```
 
-**Structure Decision**: [Document the selected structure and reference the real
-directories captured above]
+**Structure Decision**: Web application (Option 2). Backend uses modular structure under `backend/src/Modules/SkillMatrix/` with Domain, Application, Infrastructure, Presentation, Integration. Frontend uses lazy-loaded feature `skill-matrix` under `frontend/src/app/features/skill-matrix/`. Paths align with tasks.md (e.g. T001, T002, T023–T065).
 
 ## Complexity Tracking
 
