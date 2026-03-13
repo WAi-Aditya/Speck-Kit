@@ -11,12 +11,12 @@
 
 **Purpose**: Initialize module scaffolding and shared dependencies for backend and frontend.
 
-- [ ] T001 Create backend module folders for skill matrix in backend/src/Modules/SkillMatrix/
-- [ ] T002 Create frontend feature folders in frontend/src/app/features/skill-matrix/
-- [ ] T003 [P] Add backend package references for Azure Blob and Hangfire in backend/ITP.Api.csproj
-- [ ] T004 [P] Add frontend dependencies for PrimeNG Chart and PrimeIcons in frontend/package.json
-- [ ] T005 Configure Swagger grouping for Skill Matrix endpoints in backend/src/Presentation/Swagger/SwaggerConfig.cs
-- [ ] T006 Configure environment settings for Azure Blob and notification scheduler in backend/src/Infrastructure/Configuration/SkillMatrixOptions.cs
+- [x] T001 Create backend module folders for skill matrix in backend/src/Modules/SkillMatrix/
+- [x] T002 Create frontend feature folders in frontend/src/app/features/skill-matrix/
+- [x] T003 [P] Add backend package references for Azure Blob and Hangfire in backend/ITP.Api.csproj
+- [x] T004 [P] Add frontend dependencies for PrimeNG Chart and PrimeIcons in frontend/package.json
+- [x] T005 Configure Swagger grouping for Skill Matrix endpoints in backend/src/Presentation/Swagger/SwaggerConfig.cs
+- [x] T006 Configure environment settings for Azure Blob and notification scheduler in backend/src/Infrastructure/Configuration/SkillMatrixOptions.cs
 
 ---
 
@@ -26,16 +26,16 @@
 
 **CRITICAL**: No user story work can begin until this phase is complete.
 
-- [ ] T007 Implement domain enums SkillLevel and ValidationStatus in backend/src/Modules/SkillMatrix/Domain/Enums/SkillEnums.cs
-- [ ] T008 [P] Implement base audit entity for Skill Matrix entities in backend/src/Modules/SkillMatrix/Domain/Common/AuditableEntity.cs
-- [ ] T009 Implement core entities SkillCategory, SkillSubCategory, Skill, SkillLevelCriteria in backend/src/Modules/SkillMatrix/Domain/Entities/TaxonomyEntities.cs
-- [ ] T010 [P] Implement core entities EmployeeSkill and EmployeeSkillProject in backend/src/Modules/SkillMatrix/Domain/Entities/EmployeeSkillEntities.cs
-- [ ] T011 [P] Implement core entities Certification, Assessment, AssessmentResult, Notification in backend/src/Modules/SkillMatrix/Domain/Entities/AssessmentEntities.cs
-- [ ] T012 Configure EF Core mappings and constraints for all Skill Matrix entities in backend/src/Modules/SkillMatrix/Infrastructure/Persistence/Configurations/
-- [ ] T013 Create EF Core migration for Skill Matrix schema in backend/src/Infrastructure/Persistence/Migrations/
-- [ ] T014 Register Skill Matrix DbSets and module services in backend/src/Infrastructure/Persistence/ITPDbContext.cs
-- [ ] T015 Implement role-based authorization policies Employee/Manager/HRAdmin/Leadership in backend/src/Presentation/Auth/SkillMatrixPolicies.cs
-- [ ] T016 [P] Add Angular role guard and permission directive for skill matrix routes in frontend/src/app/core/auth/skill-matrix-permissions.ts
+- [x] T007 Implement domain enums SkillLevel and ValidationStatus in backend/src/Modules/SkillMatrix/Domain/Enums/SkillEnums.cs
+- [x] T008 [P] Implement base audit entity for Skill Matrix entities in backend/src/Modules/SkillMatrix/Domain/Common/AuditableEntity.cs
+- [x] T009 Implement core entities SkillCategory, SkillSubCategory, Skill, SkillLevelCriteria in backend/src/Modules/SkillMatrix/Domain/Entities/TaxonomyEntities.cs
+- [x] T010 [P] Implement core entities EmployeeSkill and EmployeeSkillProject in backend/src/Modules/SkillMatrix/Domain/Entities/EmployeeSkillEntities.cs
+- [x] T011 [P] Implement core entities Certification, Assessment, AssessmentResult, Notification in backend/src/Modules/SkillMatrix/Domain/Entities/AssessmentEntities.cs
+- [x] T012 Configure EF Core mappings and constraints for all Skill Matrix entities in backend/src/Modules/SkillMatrix/Infrastructure/Persistence/Configurations/
+- [x] T013 Create EF Core migration for Skill Matrix schema in backend/src/Infrastructure/Persistence/Migrations/
+- [x] T014 Register Skill Matrix DbSets and module services in backend/src/Infrastructure/Persistence/ITPDbContext.cs
+- [x] T015 Implement role-based authorization policies Employee/Manager/HRAdmin/Leadership in backend/src/Presentation/Auth/SkillMatrixPolicies.cs
+- [x] T016 [P] Add Angular role guard and permission directive for skill matrix routes in frontend/src/app/core/auth/skill-matrix-permissions.ts
 
 **Checkpoint**: Foundation ready. User story phases can proceed.
 
